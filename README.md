@@ -1,8 +1,9 @@
 # Cars Service
 
 - rejestracja użytkowników przez email i hasło
+- dostęp do aplikacji tylko dla zarejestrowanych użytkowników
 - weryfikacja email
-- dodawanie i usuwanie samochodów
+- dodawanie, edycja i usuwanie samochodów
 - wyszukiwarka samochodów po różnych kolumnach
 
 Angular 6<br>
