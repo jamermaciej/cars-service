@@ -1,6 +1,9 @@
 # Cars Service
 
-# Dodawanie i usuwanie samochodów
+- rejestracja użytkowników przez email i hasło
+- weryfikacja email
+- dodawanie i usuwanie samochodów
+- wyszukiwarka samochodów po różnych kolumnach
 
 Angular 6<br>
 Baza danych - MongoDB (mLab)<br>
