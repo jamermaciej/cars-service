@@ -1,0 +1,13 @@
+<app-header>
+    <div breadcrumbs>User account</div>
+</app-header>
+<div class="row">
+    <div class="user-account">
+        {{authService.user?.email}}<br>
+        Email <span *ngIf="authService.user?.emailVerified; else noverified">zweryfikowany</span><br>
+        Konto utworzone: {{authService.user?.metadata.creationTime}}<br>
+        Ostatnie logowanie: {{authService.user?.metadata.lastSignInTime}}<br>
+
+        <ng-template #noverified>niezweryfikowany</ng-template>
+    </div>
+</div>

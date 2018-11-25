@@ -1,0 +1,71 @@
+<app-header>
+  <div breadcrumbs>Add car</div>
+</app-header>
+<div class="row"> 
+    <form class="col s12" [formGroup]="addCarForm" (ngSubmit)="onSubmit()"> 
+      <div class="row">
+        <div class="input-field col s4">
+          <input id="model" type="text" name="model" formControlName="model" class="validate">
+          <label for="model">Model</label>
+          <div *ngIf="addCarForm.get('model').invalid && addCarForm.get('model').dirty">asdasdasd</div>
+        </div>
+        <div class="input-field col s4">
+          <input id="type" type="text" name="type" formControlName="type" class="validate">
+          <label for="type">Type</label>
+        </div>
+        <div class="input-field col s4">
+            <input id="plate" type="text" name="plate" formControlName="plate" class="validate">
+            <label for="plate">Plate</label>
+          </div>
+      </div>
+      <div class="row">
+          <div class="input-field col s4">
+            <input id="delivery-date" name="deliveryDate" formControlName="deliveryDate" type="text" class="validate datepicker">
+            <label for="delivery-date">Delivery date</label>
+          </div>
+          <div class="input-field col s4">
+            <input id="deadline" type="text" name="deadline" formControlName="deadline" class="validate datepicker">
+            <label for="deadline">Deadline</label>
+          </div>
+          <div class="input-field col s4">
+              <input id="color" type="text" name="color" formControlName="color" class="validate">
+              <label for="color">Color</label>
+            </div>
+        </div>
+      <div class="row">
+        <div class="input-field col s4">
+          <input id="power" type="number" name="power" formControlName="power" class="validate">
+          <label for="power">Power</label>
+        </div>
+        <div class="input-field col s4">
+            <input id="cost" type="number" name="cost" formControlName="cost" class="validate">
+            <label for="cost">Cost</label>
+          </div>
+          <div class="input-field col s4">
+              <label>
+                  <input type="checkbox" class="filled-in" name="isFullyDamaged" formControlName="isFullyDamaged">
+                  <span>Is car fully damaged?</span>
+                </label>
+            </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s4">
+            <input id="clientFirstName" type="text" name="clientFirstName" formControlName="clientFirstName" class="validate">
+            <label for="clientFirstName">Client First Name</label>
+          </div>
+          <div class="input-field col s4">
+              <input id="clinetSurname" type="text" name="clientSurname" formControlName="clientSurname" class="validate">
+              <label for="clinetSurname">Client Surname</label>
+            </div>
+            <div class="input-field col s4">
+                <input id="year" type="text" name="year" formControlName="year" class="validate">
+                <label for="year">Year</label>
+              </div>
+      </div>
+      <div class="row">
+        <div class="col s12 right-align">
+          <button type="submit" class="btn" [disabled]="addCarForm.invalid">Add car</button>
+        </div>
+      </div>
+    </form>
+  </div>

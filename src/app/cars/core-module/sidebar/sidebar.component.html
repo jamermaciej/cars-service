@@ -1,0 +1,7 @@
+<nav>
+    <a *ngIf="!authService.user" routerLink="/login" routerLinkActive="active">Login</a>
+    <a *ngIf="authService.user" routerLink="/cars" routerLinkActive="active" queryParamsHandling="preserve">Cars</a><br>
+    <a *ngIf="authService.user" routerLink="/add-car" routerLinkActive="active">Add car</a><br>
+    <a *ngIf="authService.user" routerLink="/user-account" routerLinkActive="active">User Account</a>
+    <button *ngIf="authService.user" class="btn" (click)="logout()">Wyloguj</button><br>
+</nav>

@@ -1,0 +1,41 @@
+<app-header>
+  <div breadcrumbs>Cars - {{filteredCars?.length}}</div>
+  <div content>Cars list</div>
+</app-header>
+<app-search-car (filter)="filterE($event)" (searchByE)="searchByE2($event)"></app-search-car>
+<!-- <button (click)="changeName()">Change name</button> -->
+<table class="striped" *ngIf="cars && cars.length > 0; else nocars">
+  <thead>
+    <tr> 
+      <th>Id</th>
+      <th (click)="sort()">Car</th>
+      <th>Plate</th>
+      <th>Delivery date</th>
+      <th>Deadline</th>
+      <th>Client</th>
+      <th>Cost</th>
+      <th>Action</th>
+    </tr>
+  </thead> 
+  <tbody>
+    <tr *ngFor="let car of filteredCars; let i = index;" [ngClass]="{'error': car.isFullyDamaged}" (click)="showDetails(car);">
+      <td>{{ i + 1 }}</td>
+      <td>{{ car?.model | uppercase }}</td> 
+      <td>{{ car?.plate }}</td>
+      <td>{{ car?.deliveryDate }}</td> 
+      <td>{{ car?.deadline }}</td> 
+      <td>{{ car?.clientFirstName }} {{ car?.clientSurname | surnameShortcut }}</td>
+      <td>{{ car?.cost }} zł</td>
+      <td><button class="btn" (click)="deleteCar(car._id, $event)">Usuń</button></td>
+    </tr>
+  </tbody>
+</table>
+<ng-template #nocars><p class="center-align">Currently no cars in service.</p></ng-template>
+<app-total-cost #totalCostRef [totalCost]="totalCost" (shownGross)="onShownGross($event)"></app-total-cost>
+<!-- <div class="row" *ngIf="grossCost">
+    <div class="col s12">
+        <p class="right-align"><strong>Total gross cost: </strong>{{ grossCost | number }} PLN</p>
+    </div>
+</div> -->
+<!-- <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner> -->
+

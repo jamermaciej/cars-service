@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col s12">
+    <form (ngSubmit)="login()" [formGroup]="loginForm">
+        <p class="error-message">{{authService.message}}</p>
+        <div class="input-field col s12">
+            <input id="email" type="email" name="email" formControlName="email" class="validate">
+            <label for="email">Email</label>
+            <div class="error-message" *ngIf="loginForm.get('email').invalid && loginForm.get('email').dirty">Please enter a valid email address.</div>
+          </div>
+          <div class="input-field col s12">
+            <input id="password" type="password" name="password" formControlName="password" class="validate">
+            <label for="password">Pssword</label>
+            <div class="error-message" *ngIf="loginForm.get('password').invalid && loginForm.get('password').dirty">Password should be at least 6 characters.</div>
+          </div>
+          <div class="input-fields col s3">
+            <button class="btn" [disabled]="loginForm.invalid" type="submit">Login</button>
+          </div>
+          <div class="input-fields col s3">
+              <button (click)="signup()" [disabled]="loginForm.invalid" class="btn" type="button">Sign up</button>
+          </div>
+    </form>
+  </div>
+</div>
