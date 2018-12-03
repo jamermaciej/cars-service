@@ -9,9 +9,9 @@ declare const M;
 })
 export class SearchCarComponent implements OnInit, AfterViewInit {
 
-  queryText: string;
+  filterText: string;
 
-  selectedBy = [
+  filters = [
     {
       name: 'Model',
       value: 'model'
@@ -38,10 +38,10 @@ export class SearchCarComponent implements OnInit, AfterViewInit {
     }
   ];
 
-  searchBy = 'model';
+  filterByValue = 'model';
 
   @Output()
-  searchByE: EventEmitter<string> = new EventEmitter<string>();
+  filterBy: EventEmitter<string> = new EventEmitter<string>();
 
   @Output()
   filter: EventEmitter<string> = new EventEmitter<string>();
@@ -55,12 +55,12 @@ export class SearchCarComponent implements OnInit, AfterViewInit {
     const instances = M.FormSelect.init(elems);
   }
 
-  filterE() {
-    this.filter.emit(this.queryText);
+  filterCars() {
+    this.filter.emit(this.filterText);
   }
 
-  emitSearchBy() {
+  filterCarsBy() {
     // this.queryText = ''; // kasowanie tekstu w widoku
-    this.searchByE.emit(this.searchBy);
+    this.filterBy.emit(this.filterByValue);
   }
 }

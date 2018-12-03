@@ -2,7 +2,7 @@
   <div breadcrumbs>Cars - {{filteredCars?.length}}</div>
   <div content>Cars list</div>
 </app-header>
-<app-search-car (filter)="filterE($event)" (searchByE)="searchByE2($event)"></app-search-car>
+<app-search-car (filter)="filter($event)" (filterBy)="filterBy($event)"></app-search-car>
 <!-- <button (click)="changeName()">Change name</button> -->
 <table class="striped" *ngIf="cars && cars.length > 0; else nocars">
   <thead>

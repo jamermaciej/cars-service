@@ -32,12 +32,7 @@ const appRoutes: Routes = [
         path: 'user-account',
         component: UserAccountComponent,
         canActivate: [AuthGuardsService]
-    },
-    // {
-    //     path: '**',
-    //     redirectTo: '/cars',
-    //     pathMatch: 'full'
-    // }
+    }
 ];
 
 @NgModule({

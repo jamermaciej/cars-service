@@ -210,14 +210,16 @@ export class CarsListComponent implements OnInit, AfterViewInit {
 
   }
 
-  filterE(event) {
+  filter(event) {
     this.filterText = event;
   }
 
-  searchByE2(event) {
+  filterBy(event) {
     this.searchBy = event;
     // this.filterText = ''; // kasowanie tekstu w componencie
-    this.filteredCars = this.filterCars(this.filterText);
+    if ( this.filterText ) {
+      this.filteredCars = this.filterCars(this.filterText);
+    }
   }
 
   sort() {

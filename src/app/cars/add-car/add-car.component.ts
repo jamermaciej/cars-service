@@ -37,12 +37,11 @@ export class AddCarComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const elems = document.querySelectorAll('.datepicker');
-    const options = {
-      format: 'dd.mm.yyyy'
-    };
+    // const elems = document.querySelectorAll('.datepicker');
+    // const options = {
+    //   format: 'dd.mm.yyyy'
+    // };
     // const instances = M.Datepicker.init(elems, options);
-    // this.addCarForm.controls['deadline'].setValue('xxx');
   }
 
   onSubmit() {

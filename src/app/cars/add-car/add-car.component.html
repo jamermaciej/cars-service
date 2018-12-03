@@ -20,7 +20,7 @@
       </div>
       <div class="row">
           <div class="input-field col s4">
-            <input id="delivery-date" name="deliveryDate" formControlName="deliveryDate" type="text" class="validate datepicker">
+            <input matInput [matDatepicker]="picker" id="delivery-date" name="deliveryDate" formControlName="deliveryDate" type="text" class="validate datepicker">
             <label for="delivery-date">Delivery date</label>
           </div>
           <div class="input-field col s4">
@@ -69,3 +69,12 @@
       </div>
     </form>
   </div>
+
+  <!-- <mat-form-field> -->
+      <!-- <input matInput [matDatepicker]="picker" placeholder="Choose a date"> -->
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    <!-- </mat-form-field> -->
+  <pre>
+    {{addCarForm.value | json}}
+  </pre>
