@@ -170,9 +170,13 @@ export class CarsListComponent implements OnInit, AfterViewInit {
 
   countTotalCost(): void {
     // this.totalCost = this.cars
-    this.totalCost = this.filteredCars
-    .map( car => car.cost )
-    .reduce( (prev, next) => prev + next );
+    if ( this.filteredCars.length ) {
+      this.totalCost = this.filteredCars
+      .map( car => car.cost )
+      .reduce( (prev, next) => prev + next );
+    } else {
+      this.totalCost = 0;
+    }
   }
   onShownGross(grossCost: number): void {
     this.grossCost = grossCost;
@@ -219,6 +223,7 @@ export class CarsListComponent implements OnInit, AfterViewInit {
     // this.filterText = ''; // kasowanie tekstu w componencie
     if ( this.filterText ) {
       this.filteredCars = this.filterCars(this.filterText);
+      this.countTotalCost();
     }
   }
 
