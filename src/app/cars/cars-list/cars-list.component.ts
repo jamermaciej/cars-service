@@ -13,10 +13,14 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 export class CarsListComponent implements OnInit, AfterViewInit {
 
+  // sort pipe
+  column: string = 'model';
+  order: number = 1;
+  showOrder: string;
+
   showSpinner = true;
 
-  @ViewChild('totalCostRef')
-  totalCostRef: TotalCostComponent;
+  @ViewChild('totalCostRef') totalCostRef: TotalCostComponent;
 
   totalCost: number;
   grossCost: number;
@@ -38,10 +42,28 @@ export class CarsListComponent implements OnInit, AfterViewInit {
     this._filterText = value;
     this.filteredCars = this.filterCars(value);
     this.countTotalCost();
+    this.totalCostRef.showGross();
   }
 
   filterCars(filterText: string) {
     return this.cars.filter( car => car[this.searchBy].toLowerCase().indexOf(filterText.toLowerCase()) !== -1 );
+  }
+
+  // sort pipe
+  sort(value) {
+    this.column = value;
+    this.order = this.order * (-1);
+    return false;
+  }
+
+  sortCars() {
+    return this.cars.sort( (a, b) => {
+      if ( a.model > b.model ) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
   }
 
   // filterText: string;
@@ -164,9 +186,9 @@ export class CarsListComponent implements OnInit, AfterViewInit {
     this.totalCostRef.showGross();
   }
 
-  showGross(): void {
-    this.totalCostRef.showGross();
-  }
+  // showGross(): void {
+  //   this.totalCostRef.showGross();
+  // }
 
   countTotalCost(): void {
     // this.totalCost = this.cars
@@ -225,10 +247,6 @@ export class CarsListComponent implements OnInit, AfterViewInit {
       this.filteredCars = this.filterCars(this.filterText);
       this.countTotalCost();
     }
-  }
-
-  sort() {
-    console.log('sort');
   }
 }
 // class ReactiveMessage {
