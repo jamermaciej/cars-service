@@ -18,6 +18,8 @@ export class CarsListComponent implements OnInit, AfterViewInit {
   order: number = 1;
   showOrder: string;
 
+  // sort component
+
   showSpinner = true;
 
   @ViewChild('totalCostRef') totalCostRef: TotalCostComponent;

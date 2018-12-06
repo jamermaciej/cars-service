@@ -1,4 +1,3 @@
-import { SortableTableDirective } from './cars/sortable-table.directive';
 import { AuthGuardsService } from './cars/auth/auth-guards.service';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -14,13 +13,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { CarsRoutingModule } from './cars/cars.routing.module';
 import { config } from './../environments/environment';
-import { SortService } from './cars/sort-service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoadingSpinnerComponent,
-    SortableTableDirective
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +29,7 @@ import { SortService } from './cars/sort-service';
     AngularFireModule.initializeApp(config),
     AngularFireAuthModule
   ],
-  providers: [CarsService, AuthService, AuthGuardsService, SortService],
+  providers: [CarsService, AuthService, AuthGuardsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

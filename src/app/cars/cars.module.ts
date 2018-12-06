@@ -1,5 +1,3 @@
-import { SortableTableDirective } from './sortable-table.directive';
-import { SortableColumnComponent } from './../sortable-column/sortable-column.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { UserAccountComponent } from './user-account/user-account.component';
