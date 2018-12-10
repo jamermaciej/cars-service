@@ -35,4 +35,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.get('email').value, this.loginForm.get('password').value);
     // this.router.navigate(['/cars']);
   }
+  resetPassword() {
+    this.authService.resetPassword(this.loginForm.get('email').value);
+  }
 }

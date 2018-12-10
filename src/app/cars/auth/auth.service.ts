@@ -65,4 +65,13 @@ export class AuthService {
         console.log(error);
       });
    }
+   resetPassword(email) {
+    this.angularFire.auth.sendPasswordResetEmail(email)
+      .then( success => {
+        console.log(success);
+      })
+      .catch( error => {
+        console.log(error);
+      });
+   }
 }
