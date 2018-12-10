@@ -78,4 +78,11 @@ export class CarsDetailsComponent implements OnInit, AfterViewInit {
       queryParamsHandling: 'preserve'
     });
   }
+  updateDate(event) {
+    let name = event.target.id;
+    name = name === 'delivery-date' ? 'deliveryDate' : name;
+    this.addCarForm.patchValue({
+      [name] : event.target.value
+    });
+  }
 }

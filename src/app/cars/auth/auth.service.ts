@@ -56,4 +56,13 @@ export class AuthService {
      this.angularFire.auth.signOut();
      this.router.navigate(['/login']);
    }
+   sendEmailVerLink() {
+    this.angularFire.auth.currentUser.sendEmailVerification()
+      .then( success => {
+        console.log(success);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+   }
 }

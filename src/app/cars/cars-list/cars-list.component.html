@@ -3,17 +3,17 @@
   <div content>Cars list</div>
 </app-header>
 <app-search-car (filter)="filter($event)" (filterBy)="filterBy($event)"></app-search-car>
-<button (click)="changeName()">Change name</button>
-<table class="striped" *ngIf="cars && cars.length > 0; else nocars">
+<!-- <button (click)="changeName()">Change name</button> -->
+<table class="striped" *ngIf="cars && cars.length > 0; else nocars" appSortableTable (sorted)="onSorted($event)">
   <thead>
     <tr> 
       <th>Id</th>
-      <th (click)="sort('model')">Car {{ this.showOrder }}</th>
-      <th (click)="sort('plate')">Plate {{ this.showOrder }}</th>
-      <th (click)="sort('deliveryDate')">Delivery date</th>
-      <th (click)="sort('deadline')">Deadline</th>
-      <th (click)="sort('clientSurname')">Client</th>
-      <th (click)="sort('cost')">Cost</th>
+      <th app-sortable-column="model" sort-direction="asc" (click)="sort('model')">Car {{ this.showOrder }}</th>
+      <th app-sortable-column="plate" (click)="sort('plate')">Plate {{ this.showOrder }}</th>
+      <th app-sortable-column="deliveryDate" (click)="sort('deliveryDate')">Delivery date</th>
+      <th app-sortable-column="deadline" (click)="sort('deadline')">Deadline</th>
+      <th app-sortable-column="clientFirstName" (click)="sort('clientSurname')">Client</th>
+      <th app-sortable-column="cost" (click)="sort('cost')">Cost</th>
       <th>Action</th>
     </tr>
   </thead> 

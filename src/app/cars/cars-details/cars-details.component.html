@@ -21,13 +21,13 @@
           </div>
           <div class="row">
               <div class="input-field col s4">
-                <input id="delivery-date" name="deliveryDate" formControlName="deliveryDate" type="text" class="validate datepicker">
-                <label class="active" for="delivery-date">Delivery date</label>
-              </div>
-              <div class="input-field col s4">
-                <input id="deadline" type="text" name="deadline" formControlName="deadline" class="validate datepicker">
-                <label class="active" for="deadline">Deadline</label>
-              </div>
+                  <input (change)="updateDate($event)" id="delivery-date" name="deliveryDate" formControlName="deliveryDate" type="text" class="validate datepicker">
+                  <label for="delivery-date">Delivery date</label>
+                </div>
+                <div class="input-field col s4">
+                  <input (change)="updateDate($event)" id="deadline" type="text" name="deadline" formControlName="deadline" class="validate datepicker">
+                  <label for="deadline">Deadline</label>
+                </div>
               <div class="input-field col s4">
                   <input id="color" type="text" name="color" formControlName="color" class="validate">
                   <label class="active" for="color">Color</label>

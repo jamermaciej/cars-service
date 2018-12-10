@@ -8,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserAccountComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  // lastLogin;
+  // timeNow;
 
-  ngOnInit() {
+  constructor(public authService: AuthService) {
+    // this.lastLogin = new Date(this.authService.user.metadata.lastSignInTime);
+    // this.lastLogin = this.lastLogin.getTime();
   }
 
+  ngOnInit() {
+    // const cutDown = setInterval( () => {
+    //   this.timeNow = new Date().getTime();
+    //   console.log((this.timeNow - this.lastLogin) / 1000);
+    //   if ( (this.timeNow - this.lastLogin) / 1000  > 60 ) {
+    //     this.authService.logout();
+    //     clearInterval(cutDown);
+    //   }
+    // }, 1000);
+  }
+  sendEmailVerLink() {
+    this.authService.sendEmailVerLink();
+  }
 }

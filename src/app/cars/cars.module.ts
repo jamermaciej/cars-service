@@ -1,3 +1,8 @@
+import { MaterialModule } from './../material/material.module';
+import { DatepickerComponent } from './../datepicker/datepicker.component';
+import { SortService } from './../sort/sort.service';
+import { SortableTableDirective } from './../sort/sortable-table.directive';
+import { SortableColumnComponent } from './../sort/sortable-column/sortable-column.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { UserAccountComponent } from './user-account/user-account.component';
@@ -16,9 +21,8 @@ import { TotalCostComponent } from './total-cost/total-cost.component';
 import { AddCarComponent } from './add-car/add-car.component';
 import { SearchCarComponent } from './search-car/search-car.component';
 import { CarsListResolve } from './cars-list-resolve.service';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -27,18 +31,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatFormFieldModule,
-    MatInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    // NgbModule
+    // MaterialModule
   ],
   exports: [
     CarsListComponent
   ],
   providers: [
     CarResolve,
-    CarsListResolve
+    CarsListResolve,
+    SortService
   ],
   declarations: [
     CarsListComponent,
@@ -47,7 +50,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AddCarComponent,
     SearchCarComponent,
     LoginComponent,
-    UserAccountComponent
+    UserAccountComponent,
+    SortableColumnComponent,
+    SortableTableDirective,
+    DatepickerComponent
   ]
 })
 export class CarsModule { }

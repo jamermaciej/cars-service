@@ -9,5 +9,8 @@
         Ostatnie logowanie: {{authService.user?.metadata.lastSignInTime}}<br>
 
         <ng-template #noverified>niezweryfikowany</ng-template>
+        <ng-container *ngIf="!authService.user?.emailVerified">
+            <button class="btn" (click)="sendEmailVerLink()">Send Email Ver Link</button>
+        </ng-container>
     </div>
 </div>

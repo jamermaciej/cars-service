@@ -37,11 +37,13 @@ export class AddCarComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // const elems = document.querySelectorAll('.datepicker');
-    // const options = {
-    //   format: 'dd.mm.yyyy'
-    // };
-    // const instances = M.Datepicker.init(elems, options);
+    const elems = document.querySelectorAll('.datepicker');
+    const options = {
+      format: 'dd.mm.yyyy',
+      onClose: function() {
+      }
+    };
+    const instances = M.Datepicker.init(elems, options);
   }
 
   onSubmit() {
@@ -51,6 +53,13 @@ export class AddCarComponent implements OnInit, AfterViewInit {
     this.carsService.addCar(this.addCarForm.value).subscribe( () => {
       this.addCarForm.reset();
       this.router.navigate(['/cars']);
+    });
+  }
+  updateDate(event) {
+    let name = event.target.id;
+    name = name === 'delivery-date' ? 'deliveryDate' : name;
+    this.addCarForm.patchValue({
+      [name] : event.target.value
     });
   }
 }

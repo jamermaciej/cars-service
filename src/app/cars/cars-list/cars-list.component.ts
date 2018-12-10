@@ -4,6 +4,7 @@ import { TotalCostComponent } from './../total-cost/total-cost.component';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Car } from '../models/car';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { SortService } from 'src/app/sort/sort.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class CarsListComponent implements OnInit, AfterViewInit {
 
   // sort pipe
   column: string = 'model';
-  order: number = 1;
+  order: string;
   showOrder: string;
 
   // sort component
@@ -54,8 +55,22 @@ export class CarsListComponent implements OnInit, AfterViewInit {
   // sort pipe
   sort(value) {
     this.column = value;
-    this.order = this.order * (-1);
+    // this.order = this.order * (-1);
     return false;
+  }
+
+  // sort component
+  onSorted(event) {
+      this.column = event.sortColumn;
+      this.order = event.sortDirection;
+
+      this.filteredCars.sort( (a, b) => {
+        if ( this.order === 'desc' ) {
+          return a[this.column] > b[this.column] ? -1 : 1;
+        } else {
+          return a[this.column] > b[this.column] ? 1 : -1;
+        }
+                        });
   }
 
   sortCars() {
@@ -116,9 +131,15 @@ export class CarsListComponent implements OnInit, AfterViewInit {
   constructor(private carsService: CarsService,
               private formBuilder: FormBuilder,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private sortService: SortService) {
                 this.cars = this.route.snapshot.data['cars'];
                 this.filteredCars = this.route.snapshot.data['cars'];
+
+                this.filteredCars.sort( (a, b) => {
+return a[this.column] > b[this.column] ? -1 : 1;
+                });
+
                 this.countTotalCost();
                 this.showSpinner = false;
               }
@@ -266,3 +287,7 @@ export class CarsListComponent implements OnInit, AfterViewInit {
 //     public clientSurname: string
 //   ) { }
 // }
+export class CustomerSearchCriteria {
+  sortColumn: string;
+  sortDirection: string;
+}
