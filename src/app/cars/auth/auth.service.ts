@@ -13,6 +13,11 @@ export class AuthService {
   user: User;
   message: string;
 
+  minutes_until_auto_logout = 5;
+  check_interval = 1000;
+  store_key = 'lastaction';
+  cutdown;
+
   constructor(private angularFire: AngularFireAuth,
               private router: Router) {
       angularFire.authState.subscribe( user => {
@@ -21,6 +26,10 @@ export class AuthService {
         // if ( this.user && this.redirectUrl ) {
         //   this.router.navigate([this.redirectUrl]);
         // }
+
+        this.initInterval();
+        this.check();
+        this.initListener();
       });
   }
 
@@ -73,5 +82,34 @@ export class AuthService {
       .catch( error => {
         console.log(error);
       });
+   }
+
+   get lastAction() {
+     return parseInt(localStorage.getItem(this.store_key));
+   }
+   set lastAction(value) {
+    localStorage.setItem(this.store_key, value);
+   }
+   initListener() {
+     document.body.addEventListener('click', () => this.reset());
+   }
+   reset() {
+     this.lastAction = Date.now();
+   }
+
+   initInterval() {
+    this.cutdown =  setInterval( () => {
+      this.check();
+     }, this.check_interval);
+   }
+   check() {
+    const now = Date.now();
+    const timeleft = this.lastAction + this.minutes_until_auto_logout * 60 * 1000;
+    const diff = timeleft - now;
+    const isTimeout = diff < 0;
+    if ( isTimeout ) {
+      this.logout();
+      clearInterval(this.cutdown);
+    }
    }
 }
