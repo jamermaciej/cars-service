@@ -88,7 +88,8 @@ export class AuthService {
      return parseInt(localStorage.getItem(this.store_key));
    }
    set lastAction(value) {
-    localStorage.setItem(this.store_key, value);
+     console.log(typeof value);
+    localStorage.setItem(this.store_key, '' + value);
    }
    initListener() {
      document.body.addEventListener('click', () => this.reset());

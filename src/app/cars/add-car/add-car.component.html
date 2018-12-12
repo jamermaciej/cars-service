@@ -7,7 +7,7 @@
         <div class="input-field col s4">
           <input id="model" type="text" name="model" formControlName="model" class="validate">
           <label for="model">Model</label>
-          <div *ngIf="addCarForm.get('model').invalid && addCarForm.get('model').dirty">asdasdasd</div>
+          <div *ngIf="addCarForm.get('model').invalid && addCarForm.get('model').dirty">Model is required</div>
         </div>
         <div class="input-field col s4">
           <input id="type" type="text" name="type" formControlName="type" class="validate">
@@ -16,12 +16,14 @@
         <div class="input-field col s4">
             <input id="plate" type="text" name="plate" formControlName="plate" class="validate">
             <label for="plate">Plate</label>
+            <div *ngIf="addCarForm.get('plate').invalid && addCarForm.get('plate').dirty">Plate is required</div>
           </div>
       </div>
       <div class="row">
           <div class="input-field col s4">
             <input (change)="updateDate($event)" id="delivery-date" name="deliveryDate" formControlName="deliveryDate" type="text" class="validate datepicker">
             <label for="delivery-date">Delivery date</label>
+            <div *ngIf="addCarForm.get('deliveryDate').invalid && addCarForm.get('deliveryDate').dirty">Delivery date is required</div>
           </div>
           <div class="input-field col s4">
             <input (change)="updateDate($event)" id="deadline" type="text" name="deadline" formControlName="deadline" class="validate datepicker">
@@ -52,10 +54,12 @@
         <div class="input-field col s4">
             <input id="clientFirstName" type="text" name="clientFirstName" formControlName="clientFirstName" class="validate">
             <label for="clientFirstName">Client First Name</label>
+            <div *ngIf="addCarForm.get('clientFirstName').invalid && addCarForm.get('clientFirstName').dirty">Client name is required</div>
           </div>
           <div class="input-field col s4">
               <input id="clinetSurname" type="text" name="clientSurname" formControlName="clientSurname" class="validate">
               <label for="clinetSurname">Client Surname</label>
+              <div *ngIf="addCarForm.get('clientSurname').invalid && addCarForm.get('clientSurname').dirty">Client surname is required</div>
             </div>
             <div class="input-field col s4">
                 <input id="year" type="text" name="year" formControlName="year" class="validate">

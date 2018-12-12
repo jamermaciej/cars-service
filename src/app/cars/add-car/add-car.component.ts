@@ -22,17 +22,17 @@ export class AddCarComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.addCarForm = this.formBuilder.group({
       model: ['', Validators.required],
-      type: ['', Validators.required],
+      type: [''],
       plate: ['', Validators.required],
       deliveryDate: ['', Validators.required],
-      deadline: ['', Validators.required],
-      power: ['', Validators.required],
-      color: ['', Validators.required],
-      cost: ['', Validators.required],
-      isFullyDamaged: [true, Validators.required],
+      deadline: [''],
+      power: [''],
+      color: [''],
+      cost: [''],
+      isFullyDamaged: [false, Validators.required],
       clientFirstName: ['', Validators.required],
       clientSurname: ['', Validators.required],
-      year: ['', Validators.required],
+      year: [''],
     });
   }
 
