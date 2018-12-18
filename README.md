@@ -10,4 +10,4 @@ Angular 6<br>
 Baza danych - MongoDB (mLab)<br>
 Firebase - autentykacja i hosting<br>
 
-https://carsservice-d80e2.firebaseapp.com/
+https://carsservice-d80e2.firebaseapp.com/ (aktualizacja 26.11.2018)
