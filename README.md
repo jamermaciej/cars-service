@@ -16,4 +16,4 @@ Firebase - autentykacja i hosting<br>
 - wyliczenie podatku dochodowego
 - dodawanie częsci do danego samochodu
 
-https://carsservice-d80e2.firebaseapp.com/ (aktualizacja 26.11.2018)
+https://carsservice-d80e2.firebaseapp.com/ (aktualizacja 18.12.2018)

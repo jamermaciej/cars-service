@@ -21,7 +21,7 @@ export class CarTableRowComponent implements OnInit {
   ngOnInit() {
   }
 
-  deleteCar(id: number, event) {
+  deleteCar(id, event) {
     event.stopPropagation();
     this.deletedCar.emit(id);
   }
