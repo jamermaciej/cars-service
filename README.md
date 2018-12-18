@@ -11,7 +11,7 @@ Baza danych - MongoDB (mLab)<br>
 Firebase - autentykacja i hosting<br>
 
 18.12.2018
-- automatyczne wtylogowanie po 5 min bezczynnośsi
+- automatyczne wylogowanie po 5 min bezczynnośsi
 - sortowanie po kolumnach
 - wyliczenie podatku dochodowego
 - dodawanie częsci do danego samochodu
