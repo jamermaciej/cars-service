@@ -10,4 +10,10 @@ Angular 6<br>
 Baza danych - MongoDB (mLab)<br>
 Firebase - autentykacja i hosting<br>
 
+18.12.2018
+- automatyczne wtylogowanie po 5 min bezczynnośsi
+- sortowanie po kolumnach
+- wyliczenie podatku dochodowego
+- dodawanie częsci do danego samochodu
+
 https://carsservice-d80e2.firebaseapp.com/ (aktualizacja 26.11.2018)
