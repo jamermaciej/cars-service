@@ -18,15 +18,11 @@
     </tr>
   </thead> 
   <tbody>
-    <tr *ngFor="let car of filteredCars; let i = index;" [ngClass]="{'error': car.isFullyDamaged}" (click)="showDetails(car);">
-      <td>{{ i + 1 }}</td>
-      <td>{{ car?.model | uppercase }}</td> 
-      <td>{{ car?.plate }}</td>
-      <td>{{ car?.deliveryDate }}</td> 
-      <td>{{ car?.deadline }}</td> 
-      <td>{{ car?.clientFirstName }} {{ car?.clientSurname | surnameShortcut }}</td>
-      <td>{{ car?.cost }}<span *ngIf="car?.cost">zł</span></td>
-      <td><button class="btn" (click)="deleteCar(car._id, $event)">Usuń</button></td>
+    <tr *ngFor="let car of filteredCars; let i = index;" 
+    [ngClass]="{'error': car.isFullyDamaged}" 
+    (click)="showDetails(car);"
+    app-car-table-row [idx]="i" [car]="car" (deletedCar)="onDeletedCar(car._id)"
+    >
     </tr>
   </tbody>
 </table>
@@ -42,5 +38,6 @@
         <p class="right-align"><strong>Total gross cost: </strong>{{ grossCost | number }} PLN</p>
     </div>
 </div>
+
 <!-- <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner> -->
 

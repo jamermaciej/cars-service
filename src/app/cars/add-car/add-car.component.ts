@@ -1,7 +1,8 @@
+import { CsValidators } from './../shared-module/validators/cs-validators';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CarsService } from './../cars.service';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 import * as firebase from 'firebase';
 
 declare const M;
@@ -26,14 +27,55 @@ export class AddCarComponent implements OnInit, AfterViewInit {
       plate: ['', Validators.required],
       deliveryDate: ['', Validators.required],
       deadline: [''],
-      power: [''],
+      power: ['', CsValidators.power],
       color: [''],
-      cost: [''],
+      // cost: [''],
       isFullyDamaged: [false, Validators.required],
       clientFirstName: ['', Validators.required],
       clientSurname: ['', Validators.required],
       year: [''],
+      parts: this.formBuilder.array([])
     });
+  }
+
+  buildParts(): FormGroup {
+    return this.formBuilder.group({
+      name: ['', Validators.required],
+      inStock: [true, Validators.required],
+      price: ['', Validators.required]
+    });
+  }
+
+  get parts(): FormArray {
+    return <FormArray>this.addCarForm.get('parts');
+  }
+
+  addPart(event): void {
+    event.preventDefault();
+    this.parts.push(this.buildParts());
+  }
+
+  removePart(i): void {
+    this.parts.removeAt(i);
+  }
+
+  getPartsCost(parts) {
+    return parts.reduce( (prev, next) => {
+      return prev + next.price;
+    }, 0);
+  }
+
+  togglePlateValidity() {
+    const damageControl = this.addCarForm.get('isFullyDamaged');
+    const plateControl = this.addCarForm.get('plate');
+
+    if ( damageControl.value ) {
+      plateControl.clearValidators();
+    } else {
+      plateControl.setValidators(Validators.required);
+    }
+
+    plateControl.updateValueAndValidity();
   }
 
   ngAfterViewInit() {
@@ -50,7 +92,13 @@ export class AddCarComponent implements OnInit, AfterViewInit {
     this.addCar();
   }
   addCar(): void {
-    this.carsService.addCar(this.addCarForm.value).subscribe( () => {
+    // zastąpione FormArray
+    // const carFormData = Object.assign({}, this.addCarForm.value);
+    // carFormData.parts = [carFormData.parts];
+    const carFormData = Object.assign({}, this.addCarForm.value);
+    carFormData.cost = this.getPartsCost(carFormData.parts);
+
+    this.carsService.addCar(carFormData).subscribe( () => {
       this.addCarForm.reset();
       this.router.navigate(['/cars']);
     });

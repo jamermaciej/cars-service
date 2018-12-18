@@ -1,3 +1,6 @@
+import { CarTableRowComponent } from './car-table-row/car-table-row.component';
+import { CostService } from './cost.service';
+import { IncomeTaxComponent } from './total-cost/income-tax/income-tax.component';
 import { MaterialModule } from './../material/material.module';
 import { DatepickerComponent } from './../datepicker/datepicker.component';
 import { SortService } from './../sort/sort.service';
@@ -41,7 +44,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   providers: [
     CarResolve,
     CarsListResolve,
-    SortService
+    SortService,
+    CostService
   ],
   declarations: [
     CarsListComponent,
@@ -53,7 +57,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     UserAccountComponent,
     SortableColumnComponent,
     SortableTableDirective,
-    DatepickerComponent
+    DatepickerComponent,
+    IncomeTaxComponent,
+    CarTableRowComponent
   ]
 })
 export class CarsModule { }

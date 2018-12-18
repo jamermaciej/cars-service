@@ -1,3 +1,14 @@
 .row {
     margin-top: 20px;
 }
+.parts {
+    background: #e0f2f1;
+    padding: 10px;
+    position: relative;
+
+    .remove-part {
+        position: absolute;
+        top: 30px;
+        right: 10px;
+    }
+}

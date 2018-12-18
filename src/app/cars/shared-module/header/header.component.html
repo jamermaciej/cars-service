@@ -1,13 +1,13 @@
 <header>
     <div class="row">
-        <div class="col s5">
+        <div class="col s4">
           <ng-content select=[breadcrumbs]></ng-content>
         </div>
         <div class="col s3">
           <ng-content select=[content]></ng-content>
         </div>
-        <div class="col s4">
-            <span *ngIf="authService.user">Zalogowany jako: {{ authService.user.email }}</span>
+        <div class="col s5">
+            <span *ngIf="authService.user">Zalogowany jako: {{ authService.user.email }}, Logout in {{ authService.time_to_logout }} minutes</span>
         </div>
       </div>
 </header>

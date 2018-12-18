@@ -1,7 +1,9 @@
+import { CarTableRowComponent } from './../car-table-row/car-table-row.component';
+import { CostService } from './../cost.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CarsService } from './../cars.service';
 import { TotalCostComponent } from './../total-cost/total-cost.component';
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { Car } from '../models/car';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { SortService } from 'src/app/sort/sort.service';
@@ -24,6 +26,7 @@ export class CarsListComponent implements OnInit, AfterViewInit {
   showSpinner = true;
 
   @ViewChild('totalCostRef') totalCostRef: TotalCostComponent;
+  @ViewChildren(CarTableRowComponent) carRows: QueryList<CarTableRowComponent>;
 
   totalCost: number;
   grossCost: number;
@@ -132,15 +135,17 @@ export class CarsListComponent implements OnInit, AfterViewInit {
               private formBuilder: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
-              private sortService: SortService) {
+              private sortService: SortService,
+              private costService: CostService) {
                 this.cars = this.route.snapshot.data['cars'];
                 this.filteredCars = this.route.snapshot.data['cars'];
 
                 this.filteredCars.sort( (a, b) => {
-return a[this.column] > b[this.column] ? -1 : 1;
+                  return a[this.column] > b[this.column] ? -1 : 1;
                 });
 
                 this.countTotalCost();
+                // this.costService.shareCost(this.totalCost);
                 this.showSpinner = false;
               }
 
@@ -207,6 +212,12 @@ return a[this.column] > b[this.column] ? -1 : 1;
 
   ngAfterViewInit() {
     this.totalCostRef.showGross();
+
+    this.carRows.changes.subscribe( () => {
+      if ( this.carRows.first.car.clientSurname === 'Nowak' ) {
+        console.log('Warning, Nowak!');
+      }
+    });
   }
 
   // showGross(): void {
@@ -222,6 +233,7 @@ return a[this.column] > b[this.column] ? -1 : 1;
     } else {
       this.totalCost = 0;
     }
+    this.costService.shareCost(this.totalCost);
   }
   onShownGross(grossCost: number): void {
     this.grossCost = grossCost;
@@ -234,6 +246,7 @@ return a[this.column] > b[this.column] ? -1 : 1;
       this.cars = cars;
       this.filteredCars = cars;
       this.countTotalCost();
+      // this.costService.shareCost(this.totalCost);
       this.showSpinner = false;
     });
   }
@@ -243,8 +256,13 @@ return a[this.column] > b[this.column] ? -1 : 1;
       this.addCarForm.reset();
     });
   }
-  deleteCar(id, event): void {
-    event.stopPropagation();
+  // deleteCar(id, event): void {
+  //   event.stopPropagation();
+  //   this.carsService.deleteCar(id.$oid).subscribe( () => {
+  //     this.gerCars();
+  //   });
+  // }
+  onDeletedCar(id): void {
     this.carsService.deleteCar(id.$oid).subscribe( () => {
       this.gerCars();
     });
@@ -269,6 +287,7 @@ return a[this.column] > b[this.column] ? -1 : 1;
     if ( this.filterText ) {
       this.filteredCars = this.filterCars(this.filterText);
       this.countTotalCost();
+      // this.costService.shareCost(this.totalCost);
     }
   }
 }

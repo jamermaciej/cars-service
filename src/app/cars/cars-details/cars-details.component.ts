@@ -2,7 +2,7 @@ import { Car } from '../models/car';
 import { CarsService } from './../cars.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 
 declare const M;
 
@@ -31,6 +31,7 @@ export class CarsDetailsComponent implements OnInit, AfterViewInit {
     //     this.car = car;
     //   });
     // });
+    const parts = this.car.parts.map( part => this.formBuilder.group(part));
     this.addCarForm = this.formBuilder.group({
       model: [this.car.model, Validators.required],
       type: [this.car.type, Validators.required],
@@ -39,14 +40,42 @@ export class CarsDetailsComponent implements OnInit, AfterViewInit {
       deadline: [this.car.deadline, Validators.required],
       power: [this.car.power, Validators.required],
       color: [this.car.color, Validators.required],
-      cost: [this.car.cost, Validators.required],
+      // cost: [this.car.cost, Validators.required],
       isFullyDamaged: [this.car.isFullyDamaged, Validators.required],
       clientFirstName: [this.car.clientFirstName, Validators.required],
       clientSurname: [this.car.clientSurname, Validators.required],
-      year: [this.car.year, Validators.required]
+      year: [this.car.year, Validators.required],
+      parts: this.formBuilder.array(parts)
     });
 
 
+  }
+
+  buildParts(): FormGroup {
+    return this.formBuilder.group({
+      name: ['', Validators.required],
+      inStock: [true, Validators.required],
+      price: ['', Validators.required]
+    });
+  }
+
+  get parts(): FormArray {
+    return <FormArray>this.addCarForm.get('parts');
+  }
+
+  addPart(event): void {
+    event.preventDefault();
+    this.parts.push(this.buildParts());
+  }
+
+  removePart(i): void {
+    this.parts.removeAt(i);
+  }
+
+  getPartsCost(parts) {
+    return parts.reduce( (prev, next) => {
+      return prev + next.price;
+    }, 0);
   }
 
   ngAfterViewInit() {
@@ -69,7 +98,10 @@ export class CarsDetailsComponent implements OnInit, AfterViewInit {
     this.car = this.route.snapshot.data['car'];
   }
   updateCar() {
-    this.carsService.updateCar(this.car._id.$oid, this.addCarForm.value).subscribe( () => {
+    const carFormData = Object.assign({}, this.addCarForm.value);
+    carFormData.cost = this.getPartsCost(carFormData.parts);
+
+    this.carsService.updateCar(this.car._id.$oid, carFormData).subscribe( () => {
       this.router.navigate(['/cars']);
     });
   }

@@ -38,10 +38,7 @@
               <input id="power" type="number" name="power" formControlName="power" class="validate">
               <label class="active" for="power">Power</label>
             </div>
-            <div class="input-field col s4">
-                <input id="cost" type="number" name="cost" formControlName="cost" class="validate">
-                <label class="active" for="cost">Cost</label>
-              </div>
+
               <div class="input-field col s4">
                   <label>
                       <input type="checkbox" class="filled-in" name="isFullyDamaged" formControlName="isFullyDamaged">
@@ -63,6 +60,35 @@
                     <label class="active" for="year">Year</label>
                   </div>
           </div>
+
+          <div class="parts" formArrayName="parts" *ngFor="let part of parts.controls; let i = index">
+              <div [formGroupName]="i">
+                <div class="row">
+                  <div class="col s12">
+                    {{ i + 1 }}) {{ part.value.name }} {{ part.value.price | currency:'PLN':true }}
+                    <button class="btn red remove-part" (click)="removePart(i)">(x)</button>
+                  </div>
+                </div>
+                <div class="row">
+                        <div class="input-field col s4">
+                            <input id="partName" type="text" name="partName" formControlName="name" class="validate">
+                            <label for="partName">Part name</label>
+                          </div>
+                          <div class="input-field col s4">
+                              <label>
+                                  <input id="partInStock" type="checkbox" name="partInStock" formControlName="inStock" class="validate">                    <span>Is part in stock?</span>
+                                </label>
+                            </div>
+                            <div class="input-field col s4">
+                                <input id="partPrice" type="number" name="partPrice" formControlName="price" class="validate">
+                                <label for="partPrice">Part price</label>
+                              </div>
+                </div>
+              </div>
+            </div>
+      
+            <button class="btn" (click)="addPart($event)">Add part</button>
+
           <div class="row">
             <div class="col s6 left-align">
                 <button class="btn" (click)="back()">Back to list</button>            </div>

@@ -17,6 +17,7 @@ export class AuthService {
   check_interval = 1000;
   store_key = 'lastaction';
   cutdown;
+  time_to_logout;
 
   constructor(private angularFire: AngularFireAuth,
               private router: Router) {
@@ -88,7 +89,6 @@ export class AuthService {
      return parseInt(localStorage.getItem(this.store_key));
    }
    set lastAction(value) {
-     console.log(typeof value);
     localStorage.setItem(this.store_key, '' + value);
    }
    initListener() {
@@ -108,6 +108,8 @@ export class AuthService {
     const timeleft = this.lastAction + this.minutes_until_auto_logout * 60 * 1000;
     const diff = timeleft - now;
     const isTimeout = diff < 0;
+    this.time_to_logout = Math.ceil((timeleft - now) / 60000);
+
     if ( isTimeout ) {
       this.logout();
       clearInterval(this.cutdown);
