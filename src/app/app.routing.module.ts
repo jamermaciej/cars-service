@@ -10,24 +10,15 @@ import { LoginComponent } from './login/login.component';
 const appRoutes: Routes = [
     {
         path: '',
-        redirectTo: 'cars',
-        pathMatch: 'full'
+        pathMatch: 'full',
+        redirectTo: 'login'
     },
     {
         path: 'cars',
-        component: CarsListComponent,
-        resolve: { cars : CarsListResolve },
-        canActivate: [AuthGuardsService]
-    },
-    {
-        path: 'add-car',
-        component: AddCarComponent,
-        canActivate: [AuthGuardsService]
-    },
-    {
-        path: 'user-account',
-        component: UserAccountComponent,
-        canActivate: [AuthGuardsService]
+        // component: CarsListComponent,
+        // resolve: { cars : CarsListResolve },
+        // canActivate: [AuthGuardsService]
+        loadChildren: './cars/cars.module#CarsModule'
     }
 ];
 

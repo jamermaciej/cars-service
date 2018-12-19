@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './login/login.module';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardsService } from './cars/auth/auth-guards.service';
@@ -25,13 +26,13 @@ import { LayoutService } from './layout.service';
   imports: [
     BrowserModule,
     HttpClientModule,
-    CarsModule,
+    // CarsModule,
     CoreModule,
     LoginModule,
     AppRoutingModule,
-    CarsRoutingModule,
     AngularFireModule.initializeApp(config),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    BrowserAnimationsModule
   ],
   providers: [CarsService, AuthService, AuthGuardsService, LayoutService],
   bootstrap: [AppComponent]

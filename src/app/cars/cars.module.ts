@@ -1,3 +1,5 @@
+import { CarsRoutingModule } from './cars.routing.module';
+import { CarsComponent } from './cars.component';
 import { CarTableRowComponent } from './car-table-row/car-table-row.component';
 import { CostService } from './cost.service';
 import { IncomeTaxComponent } from './total-cost/income-tax/income-tax.component';
@@ -34,9 +36,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule,
+    // BrowserAnimationsModule, przeniesione do app.module.ts
     // NgbModule
     // MaterialModule
+    CarsRoutingModule
   ],
   exports: [
     CarsListComponent
@@ -48,6 +51,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     CostService
   ],
   declarations: [
+    CarsComponent,
     CarsListComponent,
     TotalCostComponent,
     CarsDetailsComponent,

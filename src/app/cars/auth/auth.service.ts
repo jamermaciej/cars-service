@@ -58,7 +58,7 @@ export class AuthService {
         .then( user => {
           console.log(user);
           this.layoutService.showSidebar();
-          this.router.navigate(['/user-account']);
+          this.router.navigate(['/cars']); // ?????
         })
         .catch( error => {
           console.log(error);
