@@ -1,3 +1,5 @@
+import { LoginModule } from './login/login.module';
+import { LoginComponent } from './login/login.component';
 import { AuthGuardsService } from './cars/auth/auth-guards.service';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -25,6 +27,7 @@ import { LayoutService } from './layout.service';
     HttpClientModule,
     CarsModule,
     CoreModule,
+    LoginModule,
     AppRoutingModule,
     CarsRoutingModule,
     AngularFireModule.initializeApp(config),

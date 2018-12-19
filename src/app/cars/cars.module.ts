@@ -10,7 +10,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { LoadingSpinnerComponent } from './../loading-spinner/loading-spinner.component';
-import { LoginComponent } from './auth/login/login.component';
+import { LoginComponent } from '../login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CarResolve } from './car-resolve.service';
 import { RouterModule } from '@angular/router';
@@ -53,7 +53,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     CarsDetailsComponent,
     AddCarComponent,
     SearchCarComponent,
-    LoginComponent,
+    // LoginComponent,
     UserAccountComponent,
     SortableColumnComponent,
     SortableTableDirective,
