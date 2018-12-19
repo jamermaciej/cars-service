@@ -1,5 +1,5 @@
-<app-sidebar></app-sidebar>
-<div class="content-wrapper">
+<app-sidebar *ngIf="isSidebarVisible"></app-sidebar>
+<div class="content-wrapper" [ngClass]="{'content-wrapper-sidebar': isSidebarVisible}">
     <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
     <router-outlet></router-outlet>
 </div>

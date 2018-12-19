@@ -1,3 +1,4 @@
+import { LayoutService } from './../../layout.service';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
@@ -20,7 +21,8 @@ export class AuthService {
   time_to_logout;
 
   constructor(private angularFire: AngularFireAuth,
-              private router: Router) {
+              private router: Router,
+              private layoutService: LayoutService) {
       angularFire.authState.subscribe( user => {
         this.user = user;
 
@@ -55,6 +57,7 @@ export class AuthService {
     this.angularFire.auth.signInWithEmailAndPassword(email, password)
         .then( user => {
           console.log(user);
+          this.layoutService.showSidebar();
           this.router.navigate(['/user-account']);
         })
         .catch( error => {
@@ -64,6 +67,7 @@ export class AuthService {
    }
    logout() {
      this.angularFire.auth.signOut();
+     this.layoutService.hideSidebar();
      this.router.navigate(['/login']);
    }
    sendEmailVerLink() {

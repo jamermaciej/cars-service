@@ -1,5 +1,4 @@
-.content-wrapper {
-    width: calc(100vw - 200px);
+.content-wrapper-sidebar {
     margin-left: 200px;
-    /* position: relative; */
+    width: calc(100vw - 200px);
 }

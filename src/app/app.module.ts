@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { CarsRoutingModule } from './cars/cars.routing.module';
 import { config } from './../environments/environment';
+import { LayoutService } from './layout.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { config } from './../environments/environment';
     AngularFireModule.initializeApp(config),
     AngularFireAuthModule
   ],
-  providers: [CarsService, AuthService, AuthGuardsService],
+  providers: [CarsService, AuthService, AuthGuardsService, LayoutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
