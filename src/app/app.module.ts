@@ -1,3 +1,4 @@
+import { AuthCanLoadGuard } from './cars/auth/auth-can-load.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './login/login.module';
 import { LoginComponent } from './login/login.component';
@@ -34,7 +35,7 @@ import { LayoutService } from './layout.service';
     AngularFireAuthModule,
     BrowserAnimationsModule
   ],
-  providers: [CarsService, AuthService, AuthGuardsService, LayoutService],
+  providers: [CarsService, AuthService, AuthGuardsService, LayoutService, AuthCanLoadGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

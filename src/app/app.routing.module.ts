@@ -1,3 +1,4 @@
+import { AuthCanLoadGuard } from './cars/auth/auth-can-load.guard';
 import { AuthGuardsService } from './cars/auth/auth-guards.service';
 import { UserAccountComponent } from './cars/user-account/user-account.component';
 import { CarsListResolve } from './cars/cars-list-resolve.service';
@@ -17,8 +18,10 @@ const appRoutes: Routes = [
         path: 'cars',
         // component: CarsListComponent,
         // resolve: { cars : CarsListResolve },
-        // canActivate: [AuthGuardsService]
-        loadChildren: './cars/cars.module#CarsModule'
+        // canActivate: [AuthGuardsService],
+        canLoad: [AuthCanLoadGuard],
+        loadChildren: './cars/cars.module#CarsModule',
+
     }
 ];
 

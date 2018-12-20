@@ -25,18 +25,18 @@ const carsRoutes: Routes = [
                 component: CarsDetailsComponent,
                 // canActivate: [AuthGuardsService],
                 resolve: { car: CarResolve }
-            },
-            {
-                path: 'add-car',
-                component: AddCarComponent,
-                canActivate: [AuthGuardsService]
-            },
-            {
-                path: 'user-account',
-                component: UserAccountComponent,
-                canActivate: [AuthGuardsService]
             }
         ]
+    },
+    {
+        path: 'add-car',
+        component: AddCarComponent,
+        // canActivate: [AuthGuardsService]
+    },
+    {
+        path: 'user-account',
+        component: UserAccountComponent,
+        // canActivate: [AuthGuardsService]
     }
 ];
 
