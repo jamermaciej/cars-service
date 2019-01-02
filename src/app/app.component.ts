@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
 ngOnInit() {
   this.layoutService.sidebarSource$.subscribe( isVisible => {
     this.isSidebarVisible = isVisible;
+    console.log(isVisible);
   });
 }
 

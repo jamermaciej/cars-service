@@ -58,7 +58,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     AddCarComponent,
     SearchCarComponent,
     // LoginComponent,
-    UserAccountComponent,
+    // UserAccountComponent,
     SortableColumnComponent,
     SortableTableDirective,
     DatepickerComponent,

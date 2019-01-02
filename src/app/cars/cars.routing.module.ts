@@ -1,3 +1,4 @@
+import { FormCanDeactivateGuard } from './auth/form-can-deactivate.guard';
 import { CarsListResolve } from './cars-list-resolve.service';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { AddCarComponent } from './add-car/add-car.component';
@@ -12,6 +13,12 @@ import { NgModule } from '@angular/core';
 
 const carsRoutes: Routes = [
     {
+        path: 'add-car',
+        component: AddCarComponent,
+        // canActivate: [AuthGuardsService]
+        canDeactivate: [FormCanDeactivateGuard]
+    },
+    {
         path: '',
         component: CarsComponent,
         children: [
@@ -23,20 +30,11 @@ const carsRoutes: Routes = [
             {
                 path: ':id',
                 component: CarsDetailsComponent,
+                canDeactivate: [FormCanDeactivateGuard],
                 // canActivate: [AuthGuardsService],
                 resolve: { car: CarResolve }
             }
         ]
-    },
-    {
-        path: 'add-car',
-        component: AddCarComponent,
-        // canActivate: [AuthGuardsService]
-    },
-    {
-        path: 'user-account',
-        component: UserAccountComponent,
-        // canActivate: [AuthGuardsService]
     }
 ];
 

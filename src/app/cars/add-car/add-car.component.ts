@@ -1,5 +1,5 @@
 import { CsValidators } from './../shared-module/validators/cs-validators';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { CarsService } from './../cars.service';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
@@ -14,11 +14,13 @@ declare const M;
 })
 export class AddCarComponent implements OnInit, AfterViewInit {
 
+  @ViewChild('addCar') addCarRef: ElementRef;
   addCarForm: FormGroup;
 
   constructor(private carsService: CarsService,
               private formBuilder: FormBuilder,
-              private router: Router) { }
+              private router: Router,
+              private renderer: Renderer2) { }
 
   ngOnInit() {
     this.addCarForm = this.formBuilder.group({
@@ -86,6 +88,18 @@ export class AddCarComponent implements OnInit, AfterViewInit {
       }
     };
     const instances = M.Datepicker.init(elems, options);
+
+    const addCarRef = this.addCarRef.nativeElement;
+
+    this.addCarForm.valueChanges.subscribe( () => {
+      if ( this.addCarForm.invalid ) {
+        // addCarRef.style.backgroundColor = 'red';
+        this.renderer.setStyle(addCarRef, 'background-color', 'red');
+      } else {
+        // addCarRef.style.backgroundColor = 'white';
+        this.renderer.setStyle(addCarRef, 'background-color', 'white');
+      }
+    });
   }
 
   onSubmit() {

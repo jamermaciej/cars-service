@@ -1,5 +1,5 @@
 import { Car } from './../models/car';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostBinding, HostListener } from '@angular/core';
 
 @Component({
   selector: '[app-car-table-row]',
@@ -13,12 +13,15 @@ export class CarTableRowComponent implements OnInit {
   @Output()
   deletedCar = new EventEmitter<number>();
 
+  @HostBinding('class.after-deadline') deadline: boolean = false;
+
   @Input()
   idx: number;
 
   constructor() { }
 
   ngOnInit() {
+    this.deadline = new Date(this.car.deadline) < new Date();
   }
 
   deleteCar(id, event) {

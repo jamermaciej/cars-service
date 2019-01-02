@@ -1,3 +1,4 @@
+import { LayoutService } from './../layout.service';
 import { AuthService } from '../cars/auth/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               public authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private layoutService: LayoutService) { }
 
   ngOnInit() {
 
@@ -34,6 +36,8 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.loginForm.get('email').value, this.loginForm.get('password').value);
     // this.router.navigate(['/cars']);
+    this.router.navigate(['/cars']).then( () => this.layoutService.showSidebar());
+
   }
   resetPassword() {
     this.authService.resetPassword(this.loginForm.get('email').value);

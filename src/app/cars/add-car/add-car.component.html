@@ -1,7 +1,7 @@
 <app-header>
   <div breadcrumbs>Add car</div>
 </app-header>
-<div class="row"> 
+<div class="row" #addCar> 
     <form class="col s12" [formGroup]="addCarForm" (ngSubmit)="onSubmit()"> 
       <div class="row">
         <div class="input-field col s4">

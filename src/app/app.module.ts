@@ -1,3 +1,5 @@
+import { UserAccountComponent } from './cars/user-account/user-account.component';
+import { FormCanDeactivateGuard } from './cars/auth/form-can-deactivate.guard';
 import { AuthCanLoadGuard } from './cars/auth/auth-can-load.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './login/login.module';
@@ -18,11 +20,15 @@ import { AppRoutingModule } from './app.routing.module';
 import { CarsRoutingModule } from './cars/cars.routing.module';
 import { config } from './../environments/environment';
 import { LayoutService } from './layout.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SharedModule } from './cars/shared-module/shared-module/shared-module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    PageNotFoundComponent,
+    UserAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +39,17 @@ import { LayoutService } from './layout.service';
     AppRoutingModule,
     AngularFireModule.initializeApp(config),
     AngularFireAuthModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule
   ],
-  providers: [CarsService, AuthService, AuthGuardsService, LayoutService, AuthCanLoadGuard],
+  providers: [
+    CarsService,
+    AuthService,
+    AuthGuardsService,
+    LayoutService,
+    AuthCanLoadGuard,
+    FormCanDeactivateGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

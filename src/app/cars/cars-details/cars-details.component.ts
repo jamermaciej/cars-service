@@ -1,3 +1,4 @@
+import { CanComponentDeactivate } from './../auth/form-can-deactivate.guard';
 import { Car } from '../models/car';
 import { CarsService } from './../cars.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
@@ -11,7 +12,7 @@ declare const M;
   templateUrl: './cars-details.component.html',
   styleUrls: ['./cars-details.component.scss']
 })
-export class CarsDetailsComponent implements OnInit, AfterViewInit {
+export class CarsDetailsComponent implements OnInit, AfterViewInit, CanComponentDeactivate {
 
   car: Car;
 
@@ -116,5 +117,11 @@ export class CarsDetailsComponent implements OnInit, AfterViewInit {
     this.addCarForm.patchValue({
       [name] : event.target.value
     });
+  }
+  canDeactivate() {
+    if ( !this.addCarForm.dirty ) {
+      return true;
+    }
+    return window.confirm('Discard changes?');
   }
 }

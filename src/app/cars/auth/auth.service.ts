@@ -57,9 +57,9 @@ export class AuthService {
     this.angularFire.auth.signInWithEmailAndPassword(email, password)
         .then( user => {
           console.log(user);
-          this.layoutService.showSidebar();
+          // this.layoutService.showSidebar();
           // this.router.navigate(['/user-account']);
-          this.router.navigate(['/cars']);
+          // this.router.navigate(['/cars']).then( () => this.layoutService.showSidebar()); przeniesione do login.component.ts
         })
         .catch( error => {
           console.log(error);

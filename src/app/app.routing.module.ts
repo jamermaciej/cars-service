@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { CarsListComponent } from './cars/cars-list/cars-list.component';
 import { AddCarComponent } from './cars/add-car/add-car.component';
 import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
     {
@@ -21,7 +22,15 @@ const appRoutes: Routes = [
         // canActivate: [AuthGuardsService],
         canLoad: [AuthCanLoadGuard],
         loadChildren: './cars/cars.module#CarsModule',
-
+    },
+    {
+        path: 'user-account',
+        component: UserAccountComponent,
+        canActivate: [AuthGuardsService]
+    },
+    {
+        path: '**',
+        component: PageNotFoundComponent
     }
 ];
 
