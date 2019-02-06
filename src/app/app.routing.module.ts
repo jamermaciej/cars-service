@@ -20,8 +20,8 @@ const appRoutes: Routes = [
         // component: CarsListComponent,
         // resolve: { cars : CarsListResolve },
         // canActivate: [AuthGuardsService],
-        canLoad: [AuthCanLoadGuard],
         loadChildren: './cars/cars.module#CarsModule',
+        canLoad: [AuthCanLoadGuard]
     },
     {
         path: 'user-account',

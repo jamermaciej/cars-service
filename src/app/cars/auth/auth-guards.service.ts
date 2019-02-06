@@ -25,7 +25,8 @@ export class AuthGuardsService implements CanActivate, CanActivateChild {
       //   this.router.navigate(['/login']);
       //   return false;
       // }
-      console.log('check');
+      console.log(this.authService.user);
+      console.log(this.angularFire.authState);
       return this.angularFire.authState.pipe(
         take(1),
         map(user => !!user),

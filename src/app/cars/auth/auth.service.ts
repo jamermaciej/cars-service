@@ -25,6 +25,7 @@ export class AuthService {
               private layoutService: LayoutService) {
       angularFire.authState.subscribe( user => {
         this.user = user;
+        console.log(new Date());
 
         // if ( this.user && this.redirectUrl ) {
         //   this.router.navigate([this.redirectUrl]);
@@ -58,7 +59,7 @@ export class AuthService {
         .then( user => {
           console.log(user);
           // this.layoutService.showSidebar();
-          // this.router.navigate(['/user-account']);
+          this.router.navigate(['/cars']);
           // this.router.navigate(['/cars']).then( () => this.layoutService.showSidebar()); przeniesione do login.component.ts
         })
         .catch( error => {
@@ -70,6 +71,7 @@ export class AuthService {
      this.angularFire.auth.signOut();
      this.layoutService.hideSidebar();
      this.router.navigate(['/login']);
+     localStorage.setItem('isSidebarVisible', 'false');
    }
    sendEmailVerLink() {
     this.angularFire.auth.currentUser.sendEmailVerification()
